@@ -1,33 +1,31 @@
 <ion-view title="{{group.name}}" ng-controller="taskController">
-<ion-content>
-    <ion-nav-buttons side='right'>
-        <!--<button class="button button-dark" ng-show="group.isManager"ui-sref="home.hours_mod({group_id : group.id})"><i class="icon ion-ios7-bookmarks"></i></button>-->
-    </ion-nav-buttons>
-    <div class="item item-button-right">
-        <div> {{group.name}} </div>
-    </div>
-    <div class="item item-text-wrap">
-        <h2> {{group.description}} </h2>
-    </div>
-    <div class="item item-divider">Contact Info</div>
-    <div class="item item-text-wrap">
-        <b>Address</b>
-        <br/>
-        {{group.address}}
-        <br/>
-        <br/>
-        <b> Contact Details </b>
-        <br/>
-        {{group.contact_name}}
-        <br/>
-        {{group.phone_number}}
-        <br/>
-        {{group.email}}
-        <br/>
-        <br/>
-        <a ng-href='{{group.website}}' ng-show='{{group.website}}' target="_blank">Website</a>
-    </div>
-    <div class="item item-divider">Location</div>
-    <googlemaps ng-show="group.address" class="google-maps" options="map" style="width: auto; height: 500px;"></googlemaps>
-</ion-content>
+    <ion-content>
+        <div class="item item-button-right">
+            <div> {{group.name}}</div>
+        </div>
+        <div class="item item-text-wrap">
+            <h2> {{group.description}} </h2>
+        </div>
+        <div class="item item-divider">Contact Info</div>
+        <div class="item item-text-wrap">
+            <b>Address</b>
+            <br/>
+            {{group.address}}
+            <br/>
+            <br/>
+            <b> Contact Details </b>
+            <br/>
+            {{group.contact_name}}
+            <br/>
+            {{group.phone_number}}
+            <br/>
+            {{group.email}}
+            <br/>
+            <br/>
+            <a ng-href='{{group.website}}' ng-show='{{group.website}}' target="_blank">Website</a>
+        </div>
+        <div class="item item-divider">Location</div>
+        <googlemaps ng-show="group.address" class="google-maps" options="map"
+                    style="width: auto; height: 500px;"></googlemaps>
+    </ion-content>
 </ion-view>

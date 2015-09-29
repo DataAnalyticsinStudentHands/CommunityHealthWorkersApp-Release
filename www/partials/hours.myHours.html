@@ -13,6 +13,7 @@
         <div class="list">
             <div class="item item-button-right" ng-repeat="entry in entries | orderBy: 'id' : true">
                 <h2> Class - {{entry.title}} </h2>
+
                 <p ng-show="entry.duration"> {{entry.duration}} Hours </p>
                 <button type="button" class="button button-dark" ng-click="deleteHour(entry.id)">Delete</button>
             </div>
