@@ -53,25 +53,11 @@ angular.module('volunteerManagementApp', [
                 },
                 authenticate: true
             }).
-            state('home.message', {
-                url: "/messages/:id",
-                views: {
-                    "app@home": {templateUrl: "partials/groupMessages.message.html", controller: 'message'}
-                },
-                authenticate: true
-            }).
             state('home.myGroups', {
                 cache: false,
                 url: "/myGroups",
                 views: {
                     "app": {templateUrl: "partials/myGroups.html", controller: 'groupController'}
-                },
-                authenticate: true
-            }).
-            state('home.joinGroups', {
-                url: "/joinGroups",
-                views: {
-                    "app": {templateUrl: "partials/groups.html", controller: 'groupController'}
                 },
                 authenticate: true
             }).
@@ -148,13 +134,6 @@ angular.module('volunteerManagementApp', [
                 },
                 authenticate: true
             }).
-            state('home.myHours', {
-                url: "/myCertificates",
-                views: {
-                    "app": {templateUrl: "partials/myCertificates.html", controller: "hoursController"}
-                },
-                authenticate: true
-            }).
             state('home.homePage', {
                 url: "/homePage",
                 views: {
@@ -179,9 +158,9 @@ angular.module('volunteerManagementApp', [
         showDelay: 0
     }).
 
-
     run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
         Restangular.setBaseUrl("https://www.housuggest.org:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
+        $rootScope.serverRoot = "http://www.housuggest.org/";
 
         //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
         $rootScope.Restangular = function () {
