@@ -25,12 +25,6 @@ Works both in browser and with the Phone Gap developer app. Also updates when yo
 
 ##Required Cordova Plugins
 
-cordova plugin add cordova-plugin-camera
-
-cordova plugin add cordova-plugin-device
-
-cordova plugin add cordova-plugin-file
-
 cordova plugin add cordova-plugin-whitelist
 
 cordova plugin add cordova-plugin-inappbrowser
