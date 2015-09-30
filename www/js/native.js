@@ -1,4 +1,4 @@
-var goBack = function() {
+var goBack = function () {
     window.history.back();
 };
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -8,11 +8,11 @@ function onDeviceReady() {
 };
 
 //Supposed to make LocalStorage Easier
-Storage.prototype.setObject = function(key, value) {
+Storage.prototype.setObject = function (key, value) {
     this.setItem(key, JSON.stringify(value));
 };
 
-Storage.prototype.getObject = function(key) {
+Storage.prototype.getObject = function (key) {
     var value = this.getItem(key);
     return value && JSON.parse(value);
 };

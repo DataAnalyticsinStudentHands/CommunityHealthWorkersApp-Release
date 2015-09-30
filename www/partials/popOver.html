@@ -3,47 +3,48 @@
         <div class="list popOver">
             <label class="item item-input item-select">
                 <div class="input-label">
-                <i class="medal-popup ion-checkmark-circled"></i> Finished
+                    <i class="medal-popup ion-checkmark-circled"></i> Finished
                 </div>
                 <select ng-model="query.finished">
-                    <option value = "1">Past </option>
-                    <option value = "0">Future </option>
-                    <option value = "">Both </option>
+                    <option value="1">Past</option>
+                    <option value="0">Future</option>
+                    <option value="">Both</option>
                 </select>
             </label>
             <label class="item item-input item-select" ng-show="isAdm || isMod">
                 <div class="input-label">
-                <i class="medal-popup ion-eye"></i> Active
+                    <i class="medal-popup ion-eye"></i> Active
                 </div>
                 <select ng-model="query.active">
-                    <option value = "1">Active </option>
-                    <option value = "0">Inactive </option>
-                    <option value = "">Both </option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                    <option value="">Both</option>
                 </select>
             </label>
             <label class="item item-input item-select">
                 <div class="input-label">
-                <i class="medal-popup ion-university"></i> Instructor
+                    <i class="medal-popup ion-university"></i> Instructor
                 </div>
                 <select ng-model="query.forCHW">
-                    <option value = "1">Yes </option>
-                    <option value = "0">No </option>
-                    <option value = "">Both </option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                    <option value="">Both</option>
                 </select>
             </label>
             <label class="item item-input item-select">
                 <div class="input-label">
-                <i class="medal-popup ion-ribbon-b"></i> Credit
+                    <i class="medal-popup ion-ribbon-b"></i> Credit
                 </div>
                 <select ng-model="query.forCredit">
-                    <option value = "1">Credit </option>
-                    <option value = "0">No Credit </option>
-                    <option value = "">Both </option>
+                    <option value="1">Credit</option>
+                    <option value="0">No Credit</option>
+                    <option value="">Both</option>
                 </select>
             </label>
+
             <div style="margin-left:16px">
                 <div class="input-label">
-                <i class="medal-popup ion-compose"></i> Cores
+                    <i class="medal-popup ion-compose"></i> Cores
                 </div>
                 <isteven-multi-select
                     input-model="badgeMultiSelect"

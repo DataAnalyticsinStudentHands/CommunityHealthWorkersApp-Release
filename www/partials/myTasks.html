@@ -1,34 +1,36 @@
 <ion-view title="My Classes">
-<ion-nav-buttons side='secondary'>
-    <button class="button button-clear" ng-click="updateTasks(true)"><i class="icon ion-refresh"></i></button>
-</ion-nav-buttons>
-<ion-content>
-    <div class="item" ng-show="tasks.length == 0 || tasks === undefined">
-        <center>
-            There are no classes in your wish list! <br/>
-            Add classes to wish list to track.
-        </center>
-    </div>
-    <div class="list card" ng-repeat="task in tasks">
-        <div class="item item-avatar item-icon-right" ng-click="viewTask(task.id)">
-            <img src="img/classes-icon.png"/>
-            <h2>{{task.name}}</h2>
-            <p>{{task.time | date:'MM/dd/yyyy @ h:mma'}}</p>
-            <i ng-show="task.finished == 1" class="icon ion-ios7-checkmark-outline"></i>
+    <ion-nav-buttons side='secondary'>
+        <button class="button button-clear" ng-click="updateTasks(true)"><i class="icon ion-refresh"></i></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="item" ng-show="tasks.length == 0 || tasks === undefined">
+            <center>
+                There are no classes in your wish list! <br/>
+                Add classes to wish list to track.
+            </center>
         </div>
-        <div class="item tabs tabs-secondary tabs-icon-left" ng-show="!isGuest">
-            <a class="tab-item" ng-click="joinTask(task.id)" ng-show="!task.isMember">
-                <i class="icon ion-ios7-people"></i>
-                Add to Wishlist
-            </a>
-            <a class="tab-item" ng-click="leaveTask(task.id)" ng-show="task.isMember">
-                <i class="icon ion-ios7-people"></i>
-                Remove from Wishlist
-            </a>
-            <a class="tab-item" ng-show="actionCount(task.id)" ng-click="showActions(task.id, $event)">
-                <i class="icon ion-ios7-more"></i>
-            </a>
+        <div class="list card" ng-repeat="task in tasks">
+            <div class="item item-avatar item-icon-right" ng-click="viewTask(task.id)">
+                <img src="img/classes-icon.png"/>
+
+                <h2>{{task.name}}</h2>
+
+                <p>{{task.time | date:'MM/dd/yyyy @ h:mma'}}</p>
+                <i ng-show="task.finished == 1" class="icon ion-ios7-checkmark-outline"></i>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left" ng-show="!isGuest">
+                <a class="tab-item" ng-click="joinTask(task.id)" ng-show="!task.isMember">
+                    <i class="icon ion-ios7-people"></i>
+                    Add to Wishlist
+                </a>
+                <a class="tab-item" ng-click="leaveTask(task.id)" ng-show="task.isMember">
+                    <i class="icon ion-ios7-people"></i>
+                    Remove from Wishlist
+                </a>
+                <a class="tab-item" ng-show="actionCount(task.id)" ng-click="showActions(task.id, $event)">
+                    <i class="icon ion-ios7-more"></i>
+                </a>
+            </div>
         </div>
-    </div>
-</ion-content>
+    </ion-content>
 </ion-view>
