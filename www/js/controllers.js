@@ -256,6 +256,7 @@ vmaControllerModule.controller('groupController', function ($scope, $state, $ion
         });
         $scope.ok = function () {
             delete $scope.editGroupNew.isGroup;
+            delete $scope.editGroupNew.isManager;
             var promise = vmaGroupService.editGroup(id, $scope.editGroupNew);
             promise.then(function (success) {
                 ngNotify.set("Center edited successfully!", 'success');
