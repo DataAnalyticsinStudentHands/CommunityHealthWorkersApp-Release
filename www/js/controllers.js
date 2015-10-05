@@ -508,6 +508,47 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         };
     };
 
+    //OPENING THE MODAL TO ADD A TASK VIA CSV
+    $scope.addTaskCSV = function () {
+        $scope.openAddCSV();
+    };
+    $scope.openAddCSV = function () {
+        $scope.newTask = {};
+        $scope.badgeOptions = $scope.badgeConfig;
+        $ionicModal.fromTemplateUrl('partials/addClassCSV.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modal = modal;
+            $scope.newTask = {};
+            $scope.modal.show();
+        });
+        $scope.openModal = function () {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function () {
+            $scope.modal.hide();
+        };
+
+        $scope.$on('$destroy', function () {
+            $scope.modal.remove();
+        });
+        $scope.check = function () {
+            console.log($scope.csv);
+        };
+        $scope.ok = function () {
+            $scope.newTask.location_id = $scope.id;
+            $scope.newTask.cores = [];
+            var promise = vmaTaskService.addTask($scope.newTask);
+            promise.then(function (success) {
+                $scope.updateTasks(true);
+                $scope.closeModal();
+                ngNotify.set("Class added successfully", "success");
+            }, function (fail) {
+                ngNotify.set(fail.data.message, 'error');
+            });
+        };
+    };
+
     //OPENING THE MODAL TO EDIT A TASK
     $scope.editTaskFunction = function (task_id) {
         $scope.openEdit(task_id);

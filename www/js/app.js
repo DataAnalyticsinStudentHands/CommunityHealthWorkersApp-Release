@@ -8,6 +8,7 @@ angular.module('volunteerManagementApp', [
     'vmaServicesModule',
     'vmaDirectiveModule',
     'vmaFilterModule',
+    'ngCsvImport',
     'restangular',
     'ngNotify',
     'highcharts-ng',
@@ -159,7 +160,9 @@ angular.module('volunteerManagementApp', [
     }).
 
     run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-        Restangular.setBaseUrl("https://www.housuggest.org:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
+        Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
+        //$rootScope.serverRoot = "http://hnetdev.hnet.uh.edu/";
+        //Restangular.setBaseUrl("https://www.housuggest.org:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
         $rootScope.serverRoot = "http://www.housuggest.org/";
 
         //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION

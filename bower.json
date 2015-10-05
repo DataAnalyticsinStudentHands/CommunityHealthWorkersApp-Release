@@ -3,16 +3,17 @@
   "appPath": "www",
   "version": "0.0.0",
   "dependencies": {
-    "restangular": "latest",
-    "ionic": "driftyco/ionic-bower#1.0.0",
-    "jquery": "latest",
-    "highcharts-ng": "latest",
-    "highcharts": "latest",
-    "lodash": "latest",
     "angular-adaptive-googlemaps": "latest",
     "angular-bootstrap-datetimepicker": "latest",
+    "angular-csv-import-tmp": "angular-csv-import#~0.0.26",
+    "checklist-model": "~0.2.4",
+    "highcharts": "latest",
+    "highcharts-ng": "latest",
+    "ionic": "driftyco/ionic-bower#1.0.0",
+    "jquery": "latest",
+    "lodash": "latest",
     "ng-notify": "latest",
-    "checklist-model": "~0.2.4"
+    "restangular": "latest"
   },
   "resolutions": {
     "angular": "~1.4.0",
