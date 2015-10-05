@@ -496,8 +496,7 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         });
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
-            //$scope.newTask.cores = [];
-            //$scope.newTask.cores.push($scope.badgeOptions.indexOf($scope.chosenBadge.name));
+            $scope.newTask.cores = [];
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function (success) {
                 $scope.updateTasks(true);
