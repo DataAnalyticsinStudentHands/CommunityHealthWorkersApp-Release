@@ -129,16 +129,6 @@ vmaControllerModule.controller('groupController', function ($scope, $state, $ion
                 });
             };
             break;
-        case "home.joinGroups":
-            $scope.update = function (update) {
-                vmaGroupService.getMetaGroups(update).then(function (success) {
-                    $scope.groups = success;
-                    $filter('removeJoined')($scope.groups);
-                    $ionicLoading.hide();
-                    $scope.$broadcast('scroll.refreshComplete');
-                });
-            };
-            break;
         case "home.group":
             $scope.id = $stateParams.id;
             $scope.update = function (update) {
@@ -194,7 +184,7 @@ vmaControllerModule.controller('groupController', function ($scope, $state, $ion
         $scope.ok = function () {
             var promise = vmaGroupService.addGroup($scope.newGroup);
             promise.then(function (success) {
-                $scope.updateGroups();
+                $scope.updateGroups(true);
                 $scope.closeModal();
                 ngNotify.set("Center created successfully!", 'success');
             }, function (fail) {
@@ -260,8 +250,8 @@ vmaControllerModule.controller('groupController', function ($scope, $state, $ion
             var promise = vmaGroupService.editGroup(id, $scope.editGroupNew);
             promise.then(function (success) {
                 ngNotify.set("Center edited successfully!", 'success');
-                $scope.updateGroups(true);
                 $scope.closeModal();
+                $scope.updateGroups(true);
             }, function (fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
@@ -304,11 +294,6 @@ vmaControllerModule.controller('groupController', function ($scope, $state, $ion
         }, function (fail) {
             ngNotify.set(fail.data.message, 'error');
         });
-    };
-
-    //VIEW POSTS
-    $scope.viewPost = function (pid) {
-        $state.go("home.group.posts.comments", {"post_id": pid}, [{reload: false}]);
     };
 
     //VIEW GROUP
@@ -511,8 +496,7 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         });
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
-            //$scope.newTask.cores = [];
-            //$scope.newTask.cores.push($scope.badgeOptions.indexOf($scope.chosenBadge.name));
+            $scope.newTask.cores = [];
             var promise = vmaTaskService.addTask($scope.newTask);
             promise.then(function (success) {
                 $scope.updateTasks(true);

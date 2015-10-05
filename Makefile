@@ -9,7 +9,7 @@ staging: clean build git-staging deploy
 
 
 prod: clean build git-prod deploy
-	@ git tag -f production-2
+	@ git tag -f production-v1.0
 	@ echo "Production deploy complete"
 
 # Build tasks
@@ -37,7 +37,7 @@ git-staging:
 deploy:
 	@ cd $(BUILD_DIR) && \
 	git add -A && \
-	git commit -m "v1.0 fix Pull#65" && \
+	git commit -m "v1.0 fix Pull#66" && \
 	git push -f origin +master:refs/heads/master
 
 .PHONY: build clean deploy git-prod git-staging prod staging
