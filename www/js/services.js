@@ -98,8 +98,8 @@ vmaServices.factory('vmaGroupService', ['Restangular', '$q', '$filter', '$rootSc
                     return defer.promise;
                 }
             },
-        getAllGroups: function () {
-            return this.updateGroups().then(function (success) {
+        getAllGroups: function (update) {
+            return this.updateGroups(update).then(function (success) {
                 return allGroups;
             });
         },
