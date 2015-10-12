@@ -532,17 +532,14 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         $scope.$on('$destroy', function () {
             $scope.modal.remove();
         });
-        $scope.upload = function () {
-            vmaTaskService.addTaskList($scope.csv.result, $scope.id);
-        };
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
             $scope.newTask.cores = [];
-            var promise = vmaTaskService.addTask($scope.newTask);
+            var promise = vmaTaskService.addTaskList($scope.csv.result, $scope.id);
             promise.then(function (success) {
                 $scope.updateTasks(true);
                 $scope.closeModal();
-                ngNotify.set("Class added successfully", "success");
+                ngNotify.set("Class CSV uploaded successfully", "success");
             }, function (fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
