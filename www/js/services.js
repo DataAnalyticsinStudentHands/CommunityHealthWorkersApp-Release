@@ -354,6 +354,9 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
                     task.location_id = location_id;
                     if (!task.cores)
                         task.cores = [];
+                    else {
+                        task.cores = JSON.parse(eval("(" + task.cores + ")"));
+                    }
                 });
             return Restangular.all("classes").all("list").post(taskList);
         },
