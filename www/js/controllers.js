@@ -532,8 +532,8 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         $scope.$on('$destroy', function () {
             $scope.modal.remove();
         });
-        $scope.check = function () {
-            console.log($scope.csv);
+        $scope.upload = function () {
+            vmaTaskService.addTaskList($scope.csv.result, $scope.id);
         };
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;

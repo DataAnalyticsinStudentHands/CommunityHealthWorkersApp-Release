@@ -347,6 +347,15 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             task.time = $filter('date')(Date.parse(task.time), 'yyyy-MM-ddTHH:mmZ');
             return Restangular.all("classes").post(task);
         },
+        addTaskList: function (taskList, location_id) {
+            taskList.forEach(function (task) {
+                task.time = $filter('date')(Date.parse(task.time), 'yyyy-MM-ddTHH:mmZ');
+                task.location_id = location_id;
+                task.cores = [];
+                console.log(task);
+            });
+            return Restangular.all("classes").all("list").post(taskList);
+        },
         editTask: function (id, task) {
             task.time = $filter('date')(Date.parse(task.time), 'yyyy-MM-ddTHH:mmZ');
             return Restangular.all("classes").all(id).doPUT(task);

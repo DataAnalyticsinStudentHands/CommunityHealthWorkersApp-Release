@@ -4,11 +4,12 @@
         <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content>
+        <div ng-init="$parent.$parent.$parent.$parent.$parent.csv.separator = ','; $parent.$parent.$parent.$parent.$parent.csv.header=true"></div>
         <ng-csv-import content="$parent.$parent.$parent.$parent.$parent.csv.content"
                        header="$parent.$parent.$parent.$parent.$parent.csv.header"
                        separator="$parent.$parent.$parent.$parent.$parent.csv.separator"
                        result="$parent.$parent.$parent.$parent.$parent.csv.result"></ng-csv-import>
-        <button ng-click="check()">CHECK</button>
+        <button class="button button-full button-dark submit" ng-click="upload()">Submit</button>
         <div>
             {{csv}}
         </div>
