@@ -347,15 +347,23 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             task.time = $filter('date')(Date.parse(task.time), 'yyyy-MM-ddTHH:mmZ');
             return Restangular.all("classes").post(task);
         },
-        addTaskList: function (taskList, location_id) {
+        addTaskList: function (taskList, location_id, badgeConfig) {
             if (taskList)
                 taskList.forEach(function (task) {
                     task.time = $filter('date')(Date.parse(task.time), 'yyyy-MM-ddTHH:mmZ');
                     task.location_id = location_id;
+                    task.active = (task.active === "TRUE") ? "1" : "0";
+                    task.forCHW = (task.forCHW === "TRUE") ? "1" : "0";
+                    task.forCredit = (task.forCredit === "TRUE") ? "1" : "0";
                     if (!task.cores)
                         task.cores = [];
                     else {
-                        task.cores = JSON.parse(eval("(" + task.cores + ")"));
+                        var cores = task.cores.replace(/"/g, '').split(", ");
+                        var coreIdArr = [];
+                        cores.forEach(function (core) {
+                            coreIdArr.push(badgeConfig.indexOf(core));
+                        });
+                        task.cores = coreIdArr;
                     }
                 });
             return Restangular.all("classes").all("list").post(taskList);

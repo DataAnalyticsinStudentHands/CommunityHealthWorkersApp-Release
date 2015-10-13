@@ -535,7 +535,7 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
             $scope.newTask.cores = [];
-            var promise = vmaTaskService.addTaskList($scope.csv.result, $scope.id);
+            var promise = vmaTaskService.addTaskList($scope.csv.result, $scope.id, $scope.badgeConfig);
             promise.then(function (success) {
                 $scope.updateTasks(true);
                 $scope.closeModal();
