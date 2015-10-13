@@ -5,6 +5,7 @@
   "dependencies": {
     "angular-adaptive-googlemaps": "latest",
     "angular-bootstrap-datetimepicker": "latest",
+    "angular-csv-import": "https://github.com/bahaaldine/angular-csv-import",
     "angular-csv-import-tmp": "angular-csv-import#~0.0.26",
     "checklist-model": "~0.2.4",
     "highcharts": "latest",
