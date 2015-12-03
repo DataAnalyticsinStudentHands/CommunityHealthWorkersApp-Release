@@ -496,7 +496,7 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         });
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
-            if (!$scope.newTask.cores) {
+            if ((!$scope.newTask.cores) || $scope.newTask.cores.length == 0) {
                 ngNotify.set("Please select cores for this class.", "error");
             } else {
                 var promise = vmaTaskService.addTask($scope.newTask);
