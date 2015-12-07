@@ -17,8 +17,17 @@
             <input id="duration" type="number" ng-model="$parent.editTask.duration" step="any"/>
         </label>
         <label class=" item-input">
+            <span class="input-label">Cost</span>
+            <input id="cost" type="text" ng-model="$parent.editTask.cost"/>
+        </label>
+        <label class=" item-input">
             <span class="input-label">Description</span>
             <textarea style="max-width:65%" id="description" ng-model="$parent.editTask.description"
+                      rows="6"></textarea>
+        </label>
+        <label class=" item-input">
+            <span class="input-label">Registration Info</span>
+            <textarea style="max-width:65%" id="registration_info" ng-model="$parent.editTask.registration_info"
                       rows="6"></textarea>
         </label>
 

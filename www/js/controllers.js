@@ -496,15 +496,18 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         });
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
-            $scope.newTask.cores = [];
-            var promise = vmaTaskService.addTask($scope.newTask);
-            promise.then(function (success) {
-                $scope.updateTasks(true);
-                $scope.closeModal();
-                ngNotify.set("Class added successfully", "success");
-            }, function (fail) {
-                ngNotify.set(fail.data.message, 'error');
-            });
+            if ((!$scope.newTask.cores) || $scope.newTask.cores.length == 0) {
+                ngNotify.set("Please select cores for this class.", "error");
+            } else {
+                var promise = vmaTaskService.addTask($scope.newTask);
+                promise.then(function (success) {
+                    $scope.updateTasks(true);
+                    $scope.closeModal();
+                    ngNotify.set("Class added successfully", "success");
+                }, function (fail) {
+                    ngNotify.set(fail.data.message, 'error');
+                });
+            }
         };
     };
 
