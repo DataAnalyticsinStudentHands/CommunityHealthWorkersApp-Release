@@ -1,7 +1,7 @@
 <ion-popover-view ng-style="popOver">
     <ion-content>
         <div class="list popOver">
-            <label class="item item-input item-select">
+            <label class="item item-input item-select" ng-init="query.finished='0'">
                 <div class="input-label">
                     <i class="medal-popup ion-checkmark-circled"></i> Finished
                 </div>
@@ -11,7 +11,7 @@
                     <option value="">Both</option>
                 </select>
             </label>
-            <label class="item item-input item-select" ng-show="isAdm || isMod">
+            <label class="item item-input item-select" ng-show="isAdm || isMod" ng-init="query.active='1'">
                 <div class="input-label">
                     <i class="medal-popup ion-eye"></i> Active
                 </div>
