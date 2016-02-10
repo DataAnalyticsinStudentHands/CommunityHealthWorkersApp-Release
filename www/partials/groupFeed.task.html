@@ -1,7 +1,9 @@
 <ion-view title="Classes">
     <ion-nav-buttons side='right'>
-        <button class="button button-clear" ng-show="isAdm || isMod" ng-click="addTaskCSV()"><i class="icon ion-upload"> </i></button>
-        <button class="button button-clear" ng-show="isAdm || isMod" ng-click="addTask()"><i class="icon ion-plus-round"> </i></button>
+        <button class="button button-clear" ng-show="isAdm || isMod" ng-click="addTaskCSV()"><i
+            class="icon ion-upload"> </i></button>
+        <button class="button button-clear" ng-show="isAdm || isMod" ng-click="addTask()"><i
+            class="icon ion-plus-round"> </i></button>
     </ion-nav-buttons>
     <ion-header-bar align-title="left" class="bar-dark bar-subheader">
         <div class="bar bar-header item-input-inset">
@@ -15,12 +17,20 @@
         </div>
     </ion-header-bar>
     <ion-content>
-        <div class="item">
+        <div class="item" ng-if="task.isManager || task.isGroupManager || isAdm || isMod">
             <center>
-                Displaying {{filtered.length}} of {{tasks.length}} classes based on search query and filters.
+                Displaying {{filtered.length}} of {{ tasks.length }} classes based on search
+                query and filters.
             </center>
         </div>
-        <div class="list card" ng-repeat="task in filtered = (tasks | orderBy: 'time' | filter: query | selectCores: indexCoresInput)">
+        <div class="item" ng-if="!(task.isManager || task.isGroupManager || isAdm || isMod)">
+            <center>
+                Displaying {{filtered.length}} of {{ (tasks | filter: {active: 1}).length }} classes based on search
+                query and filters.
+            </center>
+        </div>
+        <div class="list card"
+             ng-repeat="task in filtered = (tasks | orderBy: 'time' | filter: query | selectCores: indexCoresInput)">
             <div class="item item-avatar item-icon-right" ng-click="viewTask(task.id)">
                 <img src="img/classes-icon.png" width="60" height="50"/>
 
