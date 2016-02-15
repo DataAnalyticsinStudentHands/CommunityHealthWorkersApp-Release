@@ -26,6 +26,14 @@
                       rows="6"></textarea>
         </label>
         <label class=" item-input">
+            <span class="input-label">Room</span>
+            <input id="room" type="text" ng-model="$parent.editTask.room"/>
+        </label>
+        <label class=" item-input">
+            <span class="input-label">Address</span>
+            <input id="location" type="text" ng-model="$parent.editTask.address"/>
+        </label>
+        <label class=" item-input">
             <span class="input-label">Registration Info</span>
             <textarea style="max-width:65%" id="registration_info" ng-model="$parent.editTask.registration_info"
                       rows="6"></textarea>
@@ -53,14 +61,6 @@
                 {{option}}
             </li>
         </ul>
-        <label class=" item-input">
-            <span class="input-label">Room</span>
-            <input id="room" type="text" ng-model="$parent.editTask.room"/>
-        </label>
-        <label class=" item-input">
-            <span class="input-label">Address</span>
-            <input id="location" type="text" ng-model="$parent.editTask.address"/>
-        </label>
         <div class="button-bar">
             <button ng-click="duplicate()" class="button button-dark submit">Duplicate</button>
             <button class="button button-dark submit" ng-click="ok()">Save</button>
