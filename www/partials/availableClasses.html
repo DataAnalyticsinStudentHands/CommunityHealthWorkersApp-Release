@@ -12,8 +12,17 @@
         </div>
     </ion-header-bar>
     <ion-content>
-        <div class="item">
-            <center>Displaying {{filtered.length}} of {{ (tasks | filter: {active: 1}).length }} classes based on search query and filters.</center>
+        <div class="item" ng-if="task.isManager || task.isGroupManager || isAdm || isMod">
+            <center>
+                Displaying {{filtered.length}} of {{ tasks.length }} classes based on search
+                query and filters.
+            </center>
+        </div>
+        <div class="item" ng-if="!(task.isManager || task.isGroupManager || isAdm || isMod)">
+            <center>
+                Displaying {{filtered.length}} of {{ (tasks | filter: {active: 1}).length }} classes based on search
+                query and filters.
+            </center>
         </div>
         <div class="list card my-item"
              ng-repeat="task in filtered = (tasks | orderBy: 'time' | filter: query | selectCores: indexCoresInput)">
