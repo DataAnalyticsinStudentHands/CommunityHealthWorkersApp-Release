@@ -17,7 +17,8 @@
             of day of month, then hour, then minutes, and finally click 'Save'.</p>
         <label class="item item-input">
             <span class="input-label">Duration</span>
-            <input id="duration" type="number" ng-model="$parent.editTask.duration" placeholder="Duration of Class (hours)"
+            <input id="duration" type="number" ng-model="$parent.editTask.duration"
+                   placeholder="Duration of Class (hours)"
                    step=".25"/>
         </label>
         <label class="item item-input">
@@ -55,6 +56,13 @@
                 class=" medal-modal ion-ribbon-b"></i><br> Credit
             </ion-checkbox>
         </div>
+
+        <p class="item item-input" style="color: darkgrey">
+            Active - Display class to all users. <br/>
+            Instructor - Denotes class for only instructors. <br/>
+            Credit - Denotes classes that are for CHW CEU Credit.
+        </p>
+
         <label class="item-input">
             <span class="input-label"> Cores </span>
         </label>
