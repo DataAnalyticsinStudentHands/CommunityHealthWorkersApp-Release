@@ -160,7 +160,8 @@ angular.module('volunteerManagementApp', [
     }).
 
     run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
-        Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
+        Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CombinedBackend/");     //HOU5SUGGEST FOR VMA CORE
+        Restangular.setDefaultHeaders({"X-TenantId": "tenantCHW"});
         $rootScope.serverRoot = "http://hnetdev.hnet.uh.edu/";
         //Restangular.setBaseUrl("https://www.housuggest.org:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
         //$rootScope.serverRoot = "http://www.housuggest.org/";
@@ -202,19 +203,14 @@ angular.module('volunteerManagementApp', [
             return Auth.hasCredentials();
         };
 
-        $rootScope.badgeConfig = [
-            "Advocacy",
-            "Capacity Building",
-            "Communication Skills",
-            "Community Service",
-            "Coordination",
-            "Interpersonal Communication",
-            "Knowledge Base",
-            "Organizational",
-            "Service Coordination",
-            "Skills",
-            "Teaching Skills"
-        ];
+        $rootScope.badgeConfigPromise = Restangular.all("classes").one("coresmap").get().then(function(s){
+            $rootScope.badgeConfig = s;
+        });
+
+        Restangular.all("classes").one("coresmap").get().then(function(success){
+            $rootScope.badgeConfig = success;
+        });
+
         $rootScope.goToLink = function (url) {
             window.open(url, "_system");
         };
