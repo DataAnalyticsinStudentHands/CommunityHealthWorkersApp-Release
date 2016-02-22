@@ -4,39 +4,45 @@
         <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content>
-        <label class=" item-input">
+        <label class="item item-input">
             <span class="input-label">Name</span>
-            <input id="name" type="text" ng-model="$parent.editTask.name" required/>
+            <input id="name" type="text" ng-model="$parent.editTask.name" placeholder="Name of Class" required/>
         </label>
-        <label class=" item-input" ng-click="openDatePickerEdit()">
+        <label class="item-input" ng-click="openDatePickerEdit()">
             <span class="input-label">Select Date & Time</span>
-            <input type="text" ng-model="$parent.editTask.time">
+            <input type="text" ng-model="$parent.editTask.time | date: 'EEEE, MMM d yyyy, h:mma'"
+                   placeholder="Click to use Date Time Picker.">
         </label>
-        <label class=" item-input">
+        <p class="item-input" style="color: darkgrey">NOTE: In order to save fully, Date Time Picker requires selection
+            of day of month, then hour, then minutes, and finally click 'Save'.</p>
+        <label class="item item-input">
             <span class="input-label">Duration</span>
-            <input id="duration" type="number" ng-model="$parent.editTask.duration" step="any"/>
+            <input id="duration" type="number" ng-model="$parent.editTask.duration"
+                   placeholder="Duration of Class (hours)"
+                   step=".25"/>
         </label>
-        <label class=" item-input">
+        <label class="item item-input">
             <span class="input-label">Cost</span>
-            <input id="cost" type="text" ng-model="$parent.editTask.cost"/>
+            <input id="cost" type="text" ng-model="$parent.editTask.cost" placeholder="Cost of Class"/>
         </label>
-        <label class=" item-input">
+        <label class="item item-input">
             <span class="input-label">Description</span>
             <textarea style="max-width:65%" id="description" ng-model="$parent.editTask.description"
-                      rows="6"></textarea>
+                      placeholder="Enter Description for class here."
+                      rows="3"></textarea>
         </label>
-        <label class=" item-input">
+        <label class="item item-input">
             <span class="input-label">Room</span>
-            <input id="room" type="text" ng-model="$parent.editTask.room"/>
+            <input id="room" type="text" ng-model="$parent.editTask.room" placeholder="Room Number for Class"/>
         </label>
-        <label class=" item-input">
+        <label class="item item-input">
             <span class="input-label">Address</span>
-            <input id="location" type="text" ng-model="$parent.editTask.address"/>
+            <input id="location" type="text" ng-model="$parent.editTask.address" placeholder="Address of Class"/>
         </label>
-        <label class=" item-input">
+        <label class="item item-input">
             <span class="input-label">Registration Info</span>
             <textarea style="max-width:65%" id="registration_info" ng-model="$parent.editTask.registration_info"
-                      rows="6"></textarea>
+                      rows="3" placeholder="Enter Additional Registration information here."></textarea>
         </label>
 
         <div class="button-bar">
@@ -50,6 +56,13 @@
                 class=" medal-modal ion-ribbon-b"></i><br> Credit
             </ion-checkbox>
         </div>
+
+        <p class="item item-input" style="color: darkgrey">
+            Active - Display class to all users. <br/>
+            Instructor - Denotes class for only instructors. <br/>
+            Credit - Denotes classes that are for CHW CEU Credit.
+        </p>
+
         <label class="item-input">
             <span class="input-label"> Cores </span>
         </label>
