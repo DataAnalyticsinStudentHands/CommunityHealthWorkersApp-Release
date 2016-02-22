@@ -15,10 +15,17 @@ angular.module('volunteerManagementApp', [
     'adaptive.googlemaps',
     'ui.bootstrap.datetimepicker',
     'checklist-model',
-    "isteven-multi-select"
+    "isteven-multi-select",
+    "angular-google-analytics"
 ]).
 
-    config(function ($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $ionicConfigProvider) {
+    config(function ($stateProvider, $urlRouterProvider, $compileProvider, RestangularProvider, $ionicConfigProvider, AnalyticsProvider) {
+        AnalyticsProvider.setAccount({tracker: 'UA-73608330-1', trackEvent: true});
+        AnalyticsProvider.trackPages(true);
+        AnalyticsProvider.trackUrlParams(true);
+        AnalyticsProvider.setPageEvent('$stateChangeSuccess');
+        AnalyticsProvider.setHybridMobileSupport(true);
+
         $ionicConfigProvider.views.transition('none');
         $ionicConfigProvider.backButton.previousTitleText(false);
         $urlRouterProvider.otherwise("/homePage");
@@ -159,7 +166,7 @@ angular.module('volunteerManagementApp', [
         showDelay: 0
     }).
 
-    run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify) {
+    run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', 'Analytics', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify, Analytics) {
         Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CombinedBackend/");     //HOU5SUGGEST FOR VMA CORE
         Restangular.setDefaultHeaders({"X-TenantId": "tenantCHW"});
         $rootScope.serverRoot = "http://hnetdev.hnet.uh.edu/";
