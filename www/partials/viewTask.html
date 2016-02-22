@@ -28,7 +28,7 @@
                 <div ng-repeat="b_id in task.cores">{{badgeConfig[b_id]}}</div>
             </div>
 
-            <div class="item" ng-show="task.time"><b>Time: </b> {{task.time | date:'MM/dd/yyyy @ h:mma'}}</div>
+            <div class="item" ng-show="task.time"><b>Time: </b> {{task.time | date:'EEEE, MMM d yyyy, h:mma'}}</div>
             <div class="item" ng-hide="task.time || task.datetime"><b>Time: </b> No time specified.</div>
 
             <div class="item" ng-show="task.cost"><b>Cost: </b> {{task.cost}}</div>
