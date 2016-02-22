@@ -207,10 +207,6 @@ angular.module('volunteerManagementApp', [
             $rootScope.badgeConfig = s;
         });
 
-        Restangular.all("classes").one("coresmap").get().then(function(success){
-            $rootScope.badgeConfig = success;
-        });
-
         $rootScope.goToLink = function (url) {
             window.open(url, "_system");
         };
