@@ -309,7 +309,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
             return this.updateTasks(true).then(function (success) {
                 var result = [];
                 allTasks.forEach(function (entry) {
-                    if (entry.time) {
+                    if (entry.time && entry.active) {
                         var URL = "#/taskview/" + entry.id;
                         URL = encodeURI(URL);
                         result.push({"title": entry.name, "start": entry.time, "url": URL});
@@ -370,7 +370,7 @@ vmaServices.factory('vmaTaskService', ['Restangular', '$q', '$filter', 'vmaGroup
         },
         editTask: function (id, task) {
             task.time = $filter('date')(Date.parse(task.time), 'yyyy-MM-ddTHH:mmZ');
-            return Restangular.all("classes").all(id).doPUT(task);
+            return Restangular.all("classes").all(id).post(task);
         },
         deleteTask: function (tid) {
             return Restangular.all("classes").all(tid).remove();

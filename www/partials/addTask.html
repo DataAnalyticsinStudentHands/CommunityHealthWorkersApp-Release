@@ -25,6 +25,14 @@
             <textarea style="max-width:65%" id="description" ng-model="$parent.newTask.description" rows="6"></textarea>
         </label>
         <label class=" item-input">
+            <span class="input-label">Room</span>
+            <input id="room" type="text" ng-model="$parent.newTask.room"/>
+        </label>
+        <label class=" item-input">
+            <span class="input-label">Address</span>
+            <input id="location" type="text" ng-model="$parent.newTask.address"/>
+        </label>
+        <label class=" item-input">
             <span class="input-label">Registration Info</span>
             <textarea style="max-width:65%" id="registration_info" ng-model="$parent.newTask.registration_info"
                       rows="6"></textarea>
@@ -52,14 +60,6 @@
                 {{option}}
             </li>
         </ul>
-        <label class=" item-input">
-            <span class="input-label">Room</span>
-            <input id="room" type="text" ng-model="$parent.newTask.room"/>
-        </label>
-        <label class=" item-input">
-            <span class="input-label">Address</span>
-            <input id="location" type="text" ng-model="$parent.newTask.address"/>
-        </label>
-        <button class="button button-full button-dark submit" ng-click="ok()">Submit</button>
+        <button class="button button-full button-dark submit" ng-click="ok()">Save</button>
     </ion-content>
 </div>

@@ -13,6 +13,15 @@
         <div class="list">
             <div class="item item-text-wrap" ng-show="task.description"><b>Description: </b> {{task.description}}</div>
             <div class="item" ng-hide="task.description"><b>Description: </b> No Description Available</div>
+
+            <div class="item" ng-show="task.room"><b>Room: </b> {{task.room}}</div>
+            <div class="item" ng-hide="task.room"><b>Room: </b> N/A</div>
+
+            <div class="item" ng-show="task.address">
+                <b>Address:</b>
+                <h2> {{task.address}}</h2>
+            </div>
+
             <div class="item" ng-show="task.cores.length > 0">
                 <b>Core Competencies: </b>
 
@@ -29,15 +38,6 @@
             </div>
 
             <div class="item" ng-show="task.group"><b>Location: </b> {{task.group.name}}</div>
-
-            <div class="item" ng-show="task.room"><b>Room: </b> {{task.room}}</div>
-            <div class="item" ng-hide="task.room"><b>Room: </b> N/A</div>
-
-            <div class="item" ng-show="task.address">
-                <b>Address:</b>
-
-                <h2> {{task.address}}</h2>
-            </div>
         </div>
         <googlemaps ng-if="task.address" class="google-maps" options="map"
                     style="width: auto; height: 500px;"></googlemaps>
