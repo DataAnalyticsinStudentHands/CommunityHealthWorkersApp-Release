@@ -142,6 +142,13 @@ angular.module('volunteerManagementApp', [
                 },
                 authenticate: true
             }).
+            state('home.myHours', {
+                url: "/myCertificates",
+                views: {
+                    "app": { templateUrl: "partials/myCertificates.html", controller: "hoursController"}
+                },
+                authenticate: true
+            }).
             state('home.homePage', {
                 url: "/homePage",
                 views: {
