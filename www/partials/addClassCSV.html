@@ -1,0 +1,17 @@
+<div class="modal">
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title">Add Class CSV</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+        <div
+            ng-init="$parent.$parent.$parent.$parent.$parent.csv.separator = ','; $parent.$parent.$parent.$parent.$parent.csv.header=true"></div>
+        <ng-csv-import content="$parent.$parent.$parent.$parent.$parent.csv.content"
+                       header="$parent.$parent.$parent.$parent.$parent.csv.header"
+                       separator="$parent.$parent.$parent.$parent.$parent.csv.separator"
+                       result="$parent.$parent.$parent.$parent.$parent.csv.result"></ng-csv-import>
+
+        Use the <a href="partials/CSVClassTemplate.xlsm" download>CSV Template</a> to enter class data. When done, save as CSV file format and upload here.
+        <button class="button button-full button-dark submit" ng-click="ok()">Submit</button>
+    </ion-content>
+</div>

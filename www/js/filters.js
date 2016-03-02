@@ -55,7 +55,7 @@ vmaFilterModule.filter('getByGroupId', function () {
 });
 
 vmaFilterModule.filter('removeJoined', function () {
-    return function (input, id) {
+    return function (input) {
         var returnArray = [];
         var i = 0, len = input.length;
         for (; i < len; i++) {
@@ -89,21 +89,24 @@ vmaFilterModule.filter('convertToIndex', function () {//id=badgeconfig
 vmaFilterModule.filter('selectCores', function () { //array of what the user wants, and array have.COMPARE the two for similarities
     return function (classes, output) {
         var returnArray = [];
-        if (output == null || classes == null) {
+        if (output == null || classes == null || output.length == 0) {
             return classes;
         }
         for (var i = 0; i < classes.length; i++) {
-            if (classes[i].cores != null) {
-                for (var j = 0; j < classes[i].cores.length; j++) {
-                    for (var a = 0; a < output.length; a++) {
+            var added = false;
+            if (classes[i].cores != null && !added && classes[i].cores.length != 0) {
+                for (var j = 0; j < classes[i].cores.length && !added; j++) {
+                    for (var a = 0; a < output.length && !added; a++) {
                         if ((output[a]) == (classes[i].cores[j])) {
                             returnArray.push(classes[i]);
+                            added = true;
                         }
                     }
                 }
+            } else if (classes[i].cores.length == 0) {
+                returnArray.push(classes[i]);
             }
         }
-
         return returnArray;
     }
 });

@@ -375,7 +375,7 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
     };
 
     $ionicPopover.fromTemplateUrl('partials/popOver.html', {
-        scope: $scope,
+        scope: $scope
     }).then(function (popover) {
         $scope.filterpopover = popover;
     });
@@ -385,11 +385,13 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
     };
 
     $scope.badgeMultiSelect = [];
-    $scope.badgeConfig.forEach(function (badge) {
-        $scope.badgeMultiSelect.push({name: badge, ticked: true});
-    });
-    $scope.$watch('output', function (val) {
-        $scope.indexCoresInput = $filter('convertToIndex')($scope.output, $scope.badgeConfig);
+    $scope.badgeConfigPromise.then(function(s){
+        $scope.badgeConfig.forEach(function (badge) {
+            $scope.badgeMultiSelect.push({name: badge, ticked: true});
+        });
+        $scope.$watch('output', function (val) {
+            $scope.indexCoresInput = $filter('convertToIndex')($scope.output, $scope.badgeConfig);
+        });
     });
 
     var state = $state.current.name;
@@ -496,12 +498,53 @@ vmaControllerModule.controller('taskController', function ($scope, $state, $ioni
         });
         $scope.ok = function () {
             $scope.newTask.location_id = $scope.id;
+            if ((!$scope.newTask.cores) || $scope.newTask.cores.length == 0) {
+                ngNotify.set("Please select cores for this class.", "error");
+            } else {
+                var promise = vmaTaskService.addTask($scope.newTask);
+                promise.then(function (success) {
+                    $scope.updateTasks(true);
+                    $scope.closeModal();
+                    ngNotify.set("Class added successfully", "success");
+                }, function (fail) {
+                    ngNotify.set(fail.data.message, 'error');
+                });
+            }
+        };
+    };
+
+    //OPENING THE MODAL TO ADD A TASK VIA CSV
+    $scope.addTaskCSV = function () {
+        $scope.openAddCSV();
+    };
+    $scope.openAddCSV = function () {
+        $scope.newTask = {};
+        $scope.badgeOptions = $scope.badgeConfig;
+        $ionicModal.fromTemplateUrl('partials/addClassCSV.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modal = modal;
+            $scope.newTask = {};
+            $scope.modal.show();
+        });
+        $scope.openModal = function () {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function () {
+            $scope.modal.hide();
+        };
+
+        $scope.$on('$destroy', function () {
+            $scope.modal.remove();
+        });
+        $scope.ok = function () {
+            $scope.newTask.location_id = $scope.id;
             $scope.newTask.cores = [];
-            var promise = vmaTaskService.addTask($scope.newTask);
+            var promise = vmaTaskService.addTaskList($scope.csv.result, $scope.id, $scope.badgeConfig);
             promise.then(function (success) {
                 $scope.updateTasks(true);
                 $scope.closeModal();
-                ngNotify.set("Class added successfully", "success");
+                ngNotify.set("Class CSV uploaded successfully", "success");
             }, function (fail) {
                 ngNotify.set(fail.data.message, 'error');
             });
