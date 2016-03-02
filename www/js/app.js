@@ -174,11 +174,11 @@ angular.module('volunteerManagementApp', [
     }).
 
     run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', 'Analytics', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify, Analytics) {
-        Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CombinedBackend/");     //HOU5SUGGEST FOR VMA CORE
+        //Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CombinedBackend/");     //HOU5SUGGEST FOR VMA CORE
+        Restangular.setBaseUrl("https://www.housuggest.org:8443/CombinedBackend/");     //HOUSUGGEST FOR VMA CORE
         Restangular.setDefaultHeaders({"X-TenantId": "tenantCHW"});
-        $rootScope.serverRoot = "http://hnetdev.hnet.uh.edu/";
-        //Restangular.setBaseUrl("https://www.housuggest.org:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
-        //$rootScope.serverRoot = "http://www.housuggest.org/";
+        //$rootScope.serverRoot = "http://hnetdev.hnet.uh.edu/";
+        $rootScope.serverRoot = "http://www.housuggest.org/";
 
         //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
         $rootScope.Restangular = function () {
