@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "dependencies": {
     "gulp": "^3.5.6",
-    "gulp-sass": "^0.7.1",
+    "gulp-sass": "latest",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "gulp-deploy-git": "latest",
+    "gulp-clean": "latest"
   },
   "devDependencies": {
     "cordova": "latest",
@@ -46,7 +48,10 @@
   "scripts": {
     "test": "grunt test"
   },
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    "cordova-plugin-whitelist",
+    "cordova-plugin-inappbrowser"
+  ],
   "cordovaPlatforms": [
     "android",
     "ios"
