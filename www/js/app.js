@@ -35,8 +35,7 @@ angular.module('volunteerManagementApp', [
                 views: {
                     "menuBar@home": {templateUrl: "partials/menuBar.html", controller: "menuCtrl"},
                     "app": {templateUrl: "partials/home.html"},
-                    "header@": {templateUrl: "partials/header.html"},
-                    "bottomMenu": {templateUrl: "partials/bottomMenu.html", controller: "menuCtrl"}
+                    "header@": {templateUrl: "partials/header.html"}
                 },
                 authenticate: true
             }).
