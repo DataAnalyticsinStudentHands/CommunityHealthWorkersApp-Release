@@ -35,8 +35,7 @@ angular.module('volunteerManagementApp', [
                 views: {
                     "menuBar@home": {templateUrl: "partials/menuBar.html", controller: "menuCtrl"},
                     "app": {templateUrl: "partials/home.html"},
-                    "header@": {templateUrl: "partials/header.html"},
-                    "bottomMenu": {templateUrl: "partials/bottomMenu.html", controller: "menuCtrl"}
+                    "header@": {templateUrl: "partials/header.html"}
                 },
                 authenticate: true
             }).
@@ -174,11 +173,11 @@ angular.module('volunteerManagementApp', [
     }).
 
     run(['Restangular', '$rootScope', 'Auth', '$q', '$state', 'vmaUserService', 'ngNotify', 'Analytics', function (Restangular, $rootScope, Auth, $q, $state, vmaUserService, ngNotify, Analytics) {
-        //Restangular.setBaseUrl("https://hnetdev.hnet.uh.edu:8443/CombinedBackend/");     //HOU5SUGGEST FOR VMA CORE
-        Restangular.setBaseUrl("https://www.housuggest.org:8443/CombinedBackend/");     //HOUSUGGEST FOR VMA CORE
+        Restangular.setBaseUrl("https://www.housuggest.org:8443/CombinedBackend/");     //HOU5SUGGEST FOR VMA CORE
         Restangular.setDefaultHeaders({"X-TenantId": "tenantCHW"});
-        //$rootScope.serverRoot = "http://hnetdev.hnet.uh.edu/";
-        $rootScope.serverRoot = "http://www.housuggest.org/";
+        $rootScope.serverRoot = "http://housuggest.org//";
+        //Restangular.setBaseUrl("https://www.housuggest.org:8443/CHWApp/");     //HOUSUGGEST FOR VMA CORE
+        //$rootScope.serverRoot = "http://www.housuggest.org/";
 
         //TO ACCESS RESTANGULAR IN CONTROLLERS WITHOUT INJECTION
         $rootScope.Restangular = function () {
@@ -217,9 +216,6 @@ angular.module('volunteerManagementApp', [
             return Auth.hasCredentials();
         };
 
-        $rootScope.badgeConfigPromise = Restangular.all("classes").one("coresmap").get().then(function(s){
-            $rootScope.badgeConfig = s;
-        });
 
         $rootScope.goToLink = function (url) {
             window.open(url, "_system");
@@ -235,6 +231,11 @@ angular.module('volunteerManagementApp', [
                 //Prevents the switching of the state
                 event.preventDefault();
             }
+            if(!$rootScope.badgeConfig) {
+                $rootScope.badgeConfigPromise = Restangular.all("classes").one("coresmap").get().then(function (s) {
+                    $rootScope.badgeConfig = s;
+                });
+            }
         });
         $rootScope.$on("$stateChangeSuccess", function () {
             $('body').addClass('loaded');
@@ -242,4 +243,4 @@ angular.module('volunteerManagementApp', [
         $rootScope.$on("$stateChangeError", function () {
             $('body').addClass('loaded');
         });
-    }]);
+}]);
